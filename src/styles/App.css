@@ -26,8 +26,34 @@ input {
   margin-left: 10px;
 }
 
-nav {
+.menu {
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  padding: 20px 40px;
+  background: #313130;
+}
+
+a,
+a:active,
+a:hover,
+a:visited {
+  color: #fff;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+.menu a {
+  margin: 0 20px;
+}
+
+.menu button {
+  border: 1px solid #fff;
+  background: transparent;
+  margin-left: auto;
+  color: #fff;
+  border-radius: 4px;
+  padding: 5px 10px;
+  cursor: pointer;
 }

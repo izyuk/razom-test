@@ -17,8 +17,24 @@ const getSensors = () => {
     });
 };
 
+const getUserData = () => {
+  return axios
+    .get(`${API_URL}/auth/me`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+    .then((res) => {
+      return res;
+    })
+    .catch((err) => {
+      console.error(err);
+    });
+};
+
 const UserService = {
   getSensors,
+  getUserData,
 };
 
 export default UserService;

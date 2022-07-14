@@ -1,7 +1,8 @@
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import AuthService from "../../services/auth.service";
+import { token } from "../../config";
 
 const isInvalid = (type, length = 4) => (
   <div className="validate">
@@ -40,14 +41,15 @@ export const Login = () => {
       setPasswordValidationState(passwordLength);
 
       if (usernameLength || passwordLength) {
-        setLoading(false);
+        // setLoading(false);
         AuthService.logout();
         return false;
       }
 
       AuthService.login(username, password)
-        .then(() => {
-          navigate("/sensors");
+        .then((res) => {
+          // setToken(res.data.access_token);
+          navigate("/");
         })
         .catch((error) => {
           const resMessage =
@@ -60,8 +62,12 @@ export const Login = () => {
 
       setLoading(false);
     },
-    [username, navigate, password],
+    [username, password, navigate],
   );
+
+  useEffect(() => {
+    if (token) navigate("/");
+  }, [navigate, token]);
 
   return (
     <div className="wrap">
