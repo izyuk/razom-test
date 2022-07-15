@@ -1,21 +1,18 @@
 // import { useContext, useMemo } from "react";
-import { Router } from "./router/router";
+import { Router } from "./router/Router";
 
 // import { UserContext } from "./userContext";
-import { Navigation } from "./router/navigation";
+import { Navigation } from "./router/Navigation";
 import "./styles/App.css";
+import TokenStore from "./token-store";
 
 export const App = () => {
-  // const [token, setToken] = useContext(null);
-  //
-  // const providerValue = useMemo(() => ({ token, setToken }), [token, setToken]);
-
   return (
     <div>
-      {/*<UserContext.Provider value={providerValue}>*/}
-      <Navigation />
-      <Router />
-      {/*</UserContext.Provider>*/}
+      <TokenStore>
+        <Navigation />
+        <Router />
+      </TokenStore>
     </div>
   );
 };

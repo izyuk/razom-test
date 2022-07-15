@@ -1,8 +1,9 @@
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import AuthService from "../../services/auth.service";
-import { token } from "../../config";
+// import { token } from "../../config";
+import { Context } from "../../token-store";
 
 const isInvalid = (type, length = 4) => (
   <div className="validate">
@@ -12,6 +13,7 @@ const isInvalid = (type, length = 4) => (
 
 export const Login = () => {
   const navigate = useNavigate();
+  const [token, setToken] = useContext(Context);
 
   const [username, setLogin] = useState("");
   const [password, setPassword] = useState("");
@@ -41,15 +43,16 @@ export const Login = () => {
       setPasswordValidationState(passwordLength);
 
       if (usernameLength || passwordLength) {
-        // setLoading(false);
+        console.log("Login");
+        setLoading(false);
         AuthService.logout();
         return false;
       }
 
       AuthService.login(username, password)
         .then((res) => {
-          // setToken(res.data.access_token);
-          navigate("/");
+          setToken(res.access_token);
+          return navigate("/");
         })
         .catch((error) => {
           const resMessage =
@@ -62,11 +65,11 @@ export const Login = () => {
 
       setLoading(false);
     },
-    [username, password, navigate],
+    [username, password, setToken, navigate],
   );
 
   useEffect(() => {
-    if (token) navigate("/");
+    if (localStorage.getItem("token") || token) navigate("/");
   }, [navigate, token]);
 
   return (

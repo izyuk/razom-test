@@ -1,9 +1,13 @@
 import { Link } from "react-router-dom";
 
-import { token } from "../config";
-import { Logout } from "../components/logout";
+import { Logout } from "../components/Logout/Logout";
+import { useContext } from "react";
+import { Context } from "../token-store";
 
 export const Navigation = () => {
+  const [token] = useContext(Context);
+  console.log(token);
+
   return (
     <nav className="menu">
       <Link to={"/sensors"}>Sensors list</Link>

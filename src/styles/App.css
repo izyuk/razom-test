@@ -57,3 +57,16 @@ a:hover {
   padding: 5px 10px;
   cursor: pointer;
 }
+
+.row {
+  display: flex;
+}
+
+.row span:first-child {
+  margin-right: 5px;
+  font-weight: bold;
+}
+
+.row span:last-child {
+  font-style: italic;
+}

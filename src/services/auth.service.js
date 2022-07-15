@@ -7,7 +7,8 @@ const login = (username, password) => {
   bodyFormData.append("username", username);
   bodyFormData.append("password", password);
   return axios.post(`${API_URL}/auth/login`, bodyFormData).then((res) => {
-    if (res.data.access_token) {
+    if (res.data) {
+      console.log("auth.service");
       localStorage.setItem("user", JSON.stringify(res.data));
       localStorage.setItem("token", res.data.access_token);
     }

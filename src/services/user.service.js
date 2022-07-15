@@ -1,14 +1,11 @@
 import axios from "axios";
 
-import { API_URL, token, V1 } from "../config";
+import { API_URL, RequestCredentials, V1 } from "../config";
 
 const getSensors = () => {
+  const config = new RequestCredentials(localStorage.getItem("token")).headers();
   return axios
-    .get(`${API_URL}${V1}/sensors`, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    })
+    .get(`${API_URL}${V1}/sensors`, config)
     .then((res) => {
       return res;
     })
@@ -18,12 +15,9 @@ const getSensors = () => {
 };
 
 const getUserData = () => {
+  const config = new RequestCredentials(localStorage.getItem("token")).headers();
   return axios
-    .get(`${API_URL}/auth/me`, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    })
+    .get(`${API_URL}/auth/me`, config)
     .then((res) => {
       return res;
     })
