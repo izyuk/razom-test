@@ -1,11 +1,11 @@
-import { useCallback, useContext } from "react";
+import { memo, useCallback, useContext } from "react";
 
 import { useNavigate } from "react-router-dom";
 
 import { Context } from "../../token-store";
 import AuthService from "../../services/auth.service";
 
-export const Logout = () => {
+export const Logout = memo(() => {
   const navigate = useNavigate();
   const [token, setToken] = useContext(Context);
 
@@ -20,4 +20,4 @@ export const Logout = () => {
       Logout
     </button>
   );
-};
+});

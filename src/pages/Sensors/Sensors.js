@@ -1,8 +1,9 @@
-import { useEffect, useMemo, useState } from "react";
+import { memo, useEffect, useState } from "react";
 
 import UserService from "../../services/user.service";
+import { FindSensors } from "./FindSensors";
 
-export const Sensors = () => {
+export const Sensors = memo(() => {
   const [loader, setLoader] = useState(true);
   const [sensors, setSensors] = useState([]);
 
@@ -21,21 +22,10 @@ export const Sensors = () => {
     getSensors();
   }, []);
 
-  const sensorsList = useMemo(() => {
-    return sensors.map((item) => {
-      return (
-        <li key={`Sensor ${item.id}`}>
-          <p>Name: {item.description}</p>
-          <p>Status: {item.isActive ? "Active" : "Not active"}</p>
-        </li>
-      );
-    });
-  }, [sensors]);
-
   if (loader) {
     return <p>Loading...</p>;
   }
   if (sensors) {
-    return <ul>{sensorsList}</ul>;
+    return <FindSensors sensors={sensors} />;
   } else return <p>No sensors available</p>;
-};
+});

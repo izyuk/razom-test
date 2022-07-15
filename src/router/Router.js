@@ -6,7 +6,7 @@ import { Context } from "../token-store";
 
 import { Login } from "../pages/Login/Login";
 import { Home } from "../pages/Home/Home";
-import { Sensors } from "../pages/Sensors/Sensors";
+import { Sensors, Sensor } from "../pages/Sensors";
 import { Profile } from "../pages/Profile/Profile";
 
 export const Router = memo(() => {
@@ -27,6 +27,7 @@ export const Router = memo(() => {
       <Route exact path="/" element={<Home />} />
       <Route exact path="/login" element={<Login />} />
       <Route exact path="/sensors" element={<Sensors />} />
+      <Route exact path="/sensors/:id" element={<Sensor />} />
       <Route exact path="/profile" element={<Profile />} />
       <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>

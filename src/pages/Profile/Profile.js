@@ -11,7 +11,7 @@ const ProfileData = memo(() => {
       .then((res) => {
         setData(res.data);
       })
-      .catch((err) => console.log(err))
+      .catch((err) => console.error(err))
       .finally(() => setLoader(false));
   };
 

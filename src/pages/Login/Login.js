@@ -43,7 +43,6 @@ export const Login = () => {
       setPasswordValidationState(passwordLength);
 
       if (usernameLength || passwordLength) {
-        console.log("Login");
         setLoading(false);
         AuthService.logout();
         return false;

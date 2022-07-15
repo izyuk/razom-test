@@ -36,7 +36,6 @@ a,
 a:active,
 a:hover,
 a:visited {
-  color: #fff;
   text-decoration: none;
 }
 
@@ -45,7 +44,12 @@ a:hover {
 }
 
 .menu a {
+  color: #fff;
   margin: 0 20px;
+}
+
+li a {
+  color: #313130;
 }
 
 .menu button {
