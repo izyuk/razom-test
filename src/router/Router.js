@@ -1,6 +1,6 @@
 import { memo, useEffect, useContext } from "react";
 
-import { Route, Routes, useNavigate } from "react-router-dom";
+import { Route, Routes, useNavigate, Navigate } from "react-router-dom";
 
 import { Context } from "../token-store";
 
@@ -28,6 +28,7 @@ export const Router = memo(() => {
       <Route exact path="/login" element={<Login />} />
       <Route exact path="/sensors" element={<Sensors />} />
       <Route exact path="/profile" element={<Profile />} />
+      <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>
   );
 });
