@@ -2,7 +2,6 @@ import { useCallback, useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import AuthService from "../../services/auth.service";
-// import { token } from "../../config";
 import { TokenContext } from "../../token-store";
 
 const isInvalid = (type, length = 4) => (

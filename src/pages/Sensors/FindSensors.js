@@ -2,7 +2,7 @@ import { memo, useCallback, useEffect, useMemo, useState, useContext } from "rea
 
 import { Link } from "react-router-dom";
 
-import UserService from "../../services/user.service";
+import SensorsService from "../../services/sensors.service";
 import { SensorsContext } from "../../sensors-store";
 
 import { LoadSensors } from "./Sensors";
@@ -41,7 +41,7 @@ export const FindSensors = memo(() => {
   );
 
   const handleNewSensor = useCallback(() => {
-    UserService.createSensor(sensors[sensors.length - 1].id)
+    SensorsService.createSensor(sensors[sensors.length - 1].id)
       .then((res) => console.log(res))
       .catch((err) => console.error(err))
       .then(() =>

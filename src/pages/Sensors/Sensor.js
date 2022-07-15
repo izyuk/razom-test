@@ -2,7 +2,8 @@ import { memo, useEffect, useState } from "react";
 
 import { useParams } from "react-router-dom";
 
-import UserService from "../../services/user.service";
+import { Loader } from "../../components/Loader/Loader";
+import SensorsService from "../../services/sensors.service";
 
 export const Sensor = memo(() => {
   const [loader, setLoader] = useState(true);
@@ -10,7 +11,7 @@ export const Sensor = memo(() => {
   const params = useParams();
 
   const handleRequest = (id) => {
-    UserService.getSensorById(id)
+    SensorsService.getSensorById(id)
       .then((res) => setSensorData(res.data))
       .catch((err) => console.error(err))
       .finally(() => setLoader(false));
@@ -21,7 +22,7 @@ export const Sensor = memo(() => {
   }, [params.id]);
 
   if (loader) {
-    return <p>Loading...</p>;
+    return <Loader />;
   }
   if (sensorData) {
     const { id, description, isActive, samplingPeriod } = sensorData;

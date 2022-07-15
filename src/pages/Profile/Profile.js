@@ -1,5 +1,6 @@
 import { memo, useEffect, useMemo, useState } from "react";
 
+import { Loader } from "../../components/Loader/Loader";
 import UserService from "../../services/user.service";
 
 const ProfileData = memo(() => {
@@ -28,12 +29,12 @@ const ProfileData = memo(() => {
             <span>{data[key]}</span>
           </div>
         );
-      }
+      } else return null;
     });
   }, [data]);
 
   if (loader) {
-    return <p>Loading...</p>;
+    return <Loader />;
   }
   if (data) {
     return <div className="info">{mapData}</div>;
