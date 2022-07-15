@@ -2,7 +2,7 @@ import { memo, useEffect, useContext } from "react";
 
 import { Route, Routes, useNavigate, Navigate } from "react-router-dom";
 
-import { Context } from "../token-store";
+import { TokenContext } from "../token-store";
 
 import { Login } from "../pages/Login/Login";
 import { Home } from "../pages/Home/Home";
@@ -11,7 +11,7 @@ import { Profile } from "../pages/Profile/Profile";
 
 export const Router = memo(() => {
   const navigate = useNavigate();
-  const [contextToken, setToken] = useContext(Context);
+  const [contextToken, setToken] = useContext(TokenContext);
 
   useEffect(() => {
     if (!localStorage.getItem("token") || !contextToken) {

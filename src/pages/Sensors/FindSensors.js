@@ -1,7 +1,15 @@
-import { memo, useCallback, useEffect, useMemo, useState } from "react";
+import { memo, useCallback, useEffect, useMemo, useState, useContext } from "react";
+
 import { Link } from "react-router-dom";
 
-export const FindSensors = memo(({ sensors }) => {
+import UserService from "../../services/user.service";
+import { SensorsContext } from "../../sensors-store";
+
+import { LoadSensors } from "./Sensors";
+
+export const FindSensors = memo(() => {
+  const [sensors, updateSensors] = useContext(SensorsContext);
+
   const [collectionsList, updateCollectionsList] = useState([]);
 
   useEffect(() => {
@@ -32,6 +40,18 @@ export const FindSensors = memo(({ sensors }) => {
     [sensors],
   );
 
+  const handleNewSensor = useCallback(() => {
+    UserService.createSensor(sensors[sensors.length - 1].id)
+      .then((res) => console.log(res))
+      .catch((err) => console.error(err))
+      .then(() =>
+        LoadSensors().then((res) => {
+          updateSensors(res.data);
+        }),
+      )
+      .catch((err) => console.error(err));
+  }, [sensors, updateSensors]);
+
   if (sensors) {
     return (
       <div className="wrap">
@@ -40,6 +60,9 @@ export const FindSensors = memo(({ sensors }) => {
           <input id="search" type="text" onChange={searchFilterHandler} />
         </label>
         <ul>{sensorsList}</ul>
+        <button type="button" onClick={handleNewSensor}>
+          New Sensor
+        </button>
       </div>
     );
   } else return <p>No sensors available</p>;

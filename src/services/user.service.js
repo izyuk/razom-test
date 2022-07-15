@@ -26,6 +26,18 @@ const getSensorById = (id) => {
     });
 };
 
+const createSensor = (lastId) => {
+  const config = new RequestCredentials(localStorage.getItem("token")).headers();
+  const randomIsActive = Math.random() < 0.5;
+  const newSensorData = {
+    id: lastId + 1,
+    description: `Sensor #${lastId + 1}`,
+    samplingPeriod: 5,
+    isActive: randomIsActive,
+  };
+  return axios.post(`${API_URL}${V1}/sensors`, newSensorData, config);
+};
+
 const getUserData = () => {
   const config = new RequestCredentials(localStorage.getItem("token")).headers();
   return axios
@@ -42,6 +54,7 @@ const UserService = {
   getSensors,
   getSensorById,
   getUserData,
+  createSensor,
 };
 
 export default UserService;

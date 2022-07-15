@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 
 import AuthService from "../../services/auth.service";
 // import { token } from "../../config";
-import { Context } from "../../token-store";
+import { TokenContext } from "../../token-store";
 
 const isInvalid = (type, length = 4) => (
   <div className="validate">
@@ -13,7 +13,7 @@ const isInvalid = (type, length = 4) => (
 
 export const Login = () => {
   const navigate = useNavigate();
-  const [token, setToken] = useContext(Context);
+  const [token, setToken] = useContext(TokenContext);
 
   const [username, setLogin] = useState("");
   const [password, setPassword] = useState("");

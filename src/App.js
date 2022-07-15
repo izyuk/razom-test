@@ -5,13 +5,16 @@ import { Router } from "./router/Router";
 import { Navigation } from "./router/Navigation";
 import "./styles/App.css";
 import TokenStore from "./token-store";
+import SensorsStore from "./sensors-store";
 
 export const App = () => {
   return (
     <div>
       <TokenStore>
-        <Navigation />
-        <Router />
+        <SensorsStore>
+          <Navigation />
+          <Router />
+        </SensorsStore>
       </TokenStore>
     </div>
   );
